@@ -3,10 +3,12 @@
     margin: 30px auto;
 }
 .card-header {
-    display: block;
-	text-align: center;
-	font-size: 25px;
-	color:#3f51b5;
+	display: block;
+    text-align: center;
+    font-size: 25px;
+    color: white;
+    background-color: #3f51b5;
+    margin-top: -40px;
 }
 .error{
 	margin-top:-10px;

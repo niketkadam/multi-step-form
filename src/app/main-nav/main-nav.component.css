@@ -1,16 +1,4 @@
-.sidenav-container {
-  height: 100%;
-}
-
-.sidenav {
-  width: 200px;
-  box-shadow: 3px 0 6px rgba(0, 0, 0, 0.19);
-}
-.hidden{
-  display:none;
-}
-
-.mat-toolbar.mat-primary {
-  position: sticky;
-  top: 0;
+.toolbar{
+  background-color: #3f51b5;
+color: white;
 }
