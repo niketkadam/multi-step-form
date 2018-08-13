@@ -1,0 +1,91 @@
+.cards{
+    width: 62%;
+    margin: 30px auto;
+}
+.card-header {
+    display: block;
+	text-align: center;
+	font-size: 25px;
+	color:#3f51b5;
+}
+.error{
+	margin-top:-10px;
+}
+.example-full-width{
+    width: 100%;
+}
+#progressbar {
+	margin-bottom: 30px;
+	overflow: hidden;
+	/*CSS counters to number the steps*/
+	counter-reset: step;
+}
+#msform{
+	margin-top:20px;
+}
+#progressbar li {
+    list-style-type: none;
+    color: #3f51b5;
+    text-transform: uppercase;
+    font-size: 15px;
+    width: 32.33%;
+    float: left;
+    position: relative;
+    text-align: center;
+}
+#progressbar li:before {
+	content: counter(step);
+	counter-increment: step;
+	width: 20px;
+	line-height: 20px;
+	display: block;
+	font-size: 10px;
+	color: #333;
+	background: white;
+	border-radius: 3px;
+	margin: 0 auto 5px auto;
+}
+/*progressbar connectors*/
+#progressbar li:after {
+	content: '';
+	width: 100%;
+	height: 2px;
+	background: white;
+	position: absolute;
+	left: -50%;
+	top: 9px;
+	z-index: -1; /*put it behind the numbers*/
+}
+#progressbar li:first-child:after {
+	/*connector not needed before the first step*/
+	content: none; 
+}
+#progressbar li.active:before,  #progressbar li.active:after{
+	background: rgb(69, 145, 216);
+	color: white;
+}
+.invalid {
+	background: url(assets/public/img/invalid.png) no-repeat 0 50%;
+	color: #ec3f41;
+	padding-left: 22px;
+	line-height: 24px;
+	margin-left: -30px; 
+	list-style: none;
+  }
+  
+  .valid {
+	padding-left: 22px;
+	line-height: 24px;
+	margin-left: -30px;
+	background: url(assets/public/img/valid.png) no-repeat 0 50%;
+	color: #3a7d34;
+	list-style: none;
+  }
+.btncls{
+	background-color: #3f41b5de;
+	margin-left: 40%;
+}
+.btn1cls{
+	background-color: #3f41b5de;
+	margin: 4px;
+}

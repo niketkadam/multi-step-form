@@ -1,0 +1,65 @@
+<div id="msform">
+  <ul id="progressbar">
+    <li class="active">Account Setup</li>
+    <li [ngClass]="{active: count >= 2}">Social Profiles</li>
+    <li [ngClass]="{active: count === 3}">Personal Details</li>
+  </ul>
+</div>
+<mat-card class="cards">
+  <mat-card-content>
+    <form *ngIf="count== 1" [formGroup]="profileForm" (ngSubmit)="count=count+1">
+      <mat-card-header class="card-header">Create your account</mat-card-header>
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Name" formControlName="name">
+      </mat-form-field>
+      <mat-error *ngIf="f.name.errors && !f.name.pristine" class="error">
+        <div [hidden]="!f.name.errors.required">Username is required.</div>
+      </mat-error>
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Email" formControlName="email">
+      </mat-form-field>
+      <mat-error *ngIf="f.email.errors && !f.email.pristine" class="error" >
+        <div [hidden]="!f.email.errors.required">Email is required.</div>
+        <div [hidden]="!f.email.errors.invalidEmail">Email is invalid.</div>
+      </mat-error>
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Enter your password" formControlName="password" [type]="hide ? 'password' : 'text'">
+        <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+      </mat-form-field>
+      <mat-error *ngIf="f.password.errors && !f.password.pristine" class="error">
+        <span>
+          <ul>
+            <li [ngClass]="{invalid:f.password.hasError('required'), valid:!f.password.hasError('required')}">Password is required</li>
+            <li [ngClass]="{invalid:f.password.hasError('minLen'), valid:!f.password.hasError('minLen')}">Minimum lenght should be 8</li>
+            <li [ngClass]="{invalid:f.password.hasError('specialChar'), valid:!f.password.hasError('specialChar')}">Atleast one special character is required</li>
+            <li [ngClass]="{invalid:f.password.hasError('minCapChar'), valid:!f.password.hasError('minCapChar')}">Atleast one capital letter</li>
+            <li [ngClass]="{invalid:f.password.hasError('minNumber'), valid:!f.password.hasError('minNumber')}">Atleast one number</li>
+          </ul>
+        </span>
+      </mat-error>
+      <button mat-flat-button class="btncls" [disabled]="!profileForm.valid" (click)="onNext()">Next</button>
+    </form>
+    <form *ngIf="count== 2" novalidate (ngSubmit)="count=count+1" [formGroup]="profile2">
+      <mat-card-header class="card-header">Your presence on the social network</mat-card-header>
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Twitter/Facebook/Google" formControlName="socialmedia">
+        <mat-error *ngIf="f1.socialmedia.hasError('required')" class="error">
+          social network is required
+        </mat-error>
+      </mat-form-field>
+      <button mat-flat-button class="btncls" (click)="count=count-1" [formGroup]="profile2">Previous</button>
+      <button mat-flat-button class="btn1cls" [disabled]="!profile2.valid" (click)="count=count+1">Next</button>
+    </form>
+    <form *ngIf="count == 3" novalidate (ngSubmit)="onNext(profile3)" [formGroup]="profile3">
+      <mat-card-header class="card-header">Details</mat-card-header>
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="address" formControlName="address" class="error">
+        <mat-error *ngIf="f2.address.hasError('required')">
+          address is required
+        </mat-error>
+      </mat-form-field>
+      <button mat-flat-button class="btncls" (click)="count=count-1" [formGroup]="profile3">Previous</button>
+      <button mat-flat-button class="btn1cls" [disabled]="!profile3.valid" (click)="onSubmitClick(profileForm,profile2,profile3)">Submit</button>
+    </form>
+  </mat-card-content>
+</mat-card>
